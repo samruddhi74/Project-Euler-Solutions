@@ -1,0 +1,47 @@
+//2) Sum of all even fibonacci terms less than four million 
+
+#include<iostream>
+#include<vector>
+#include<set>
+#include<map>
+#include<algorithm>
+#include<climits>
+#include<string>
+
+using namespace std;
+
+typedef long long ll;
+typedef vector<int> vi;
+typedef vector<ll> vl;
+typedef pair<int,int> pi;
+#define mod 1000000007
+#define all(v) (v).begin(),(v).end()
+
+#define endl '\n'
+#define F first
+#define S second
+#define pb push_back
+#define MP make_pair
+#define FOR(i,a,b) for (int i = a; i <= b; i++)
+
+void solve(){
+ll prev=2,secondprev = 1;
+int limit = 4000000;
+ll sum = 2;
+while(prev < limit){
+    ll cur = prev+secondprev;
+    if(cur%2 == 0) sum += cur;
+    secondprev = prev;
+    prev = cur;
+}
+cout<<sum;
+}
+
+int main(){
+ios_base::sync_with_stdio(0);
+cin.tie(0);cout.tie(0);
+
+solve();
+
+return 0;
+}
