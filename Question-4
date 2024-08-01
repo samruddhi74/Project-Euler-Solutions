@@ -1,0 +1,56 @@
+//Question - 4 
+#include<iostream>
+#include<vector>
+#include<set>
+#include<map>
+#include<algorithm>
+#include<climits>
+#include<string>
+
+using namespace std;
+
+typedef long long ll;
+
+#define mod 1000000007
+
+bool satisfyRule(ll n) {
+    for(ll i = 999; i >= 100; i--) {
+        if(n % i == 0 && n / i <= 999 && n / i >= 100) 
+            return true;
+    }
+    return false;
+}
+
+// Get the largest palindrome number
+ll getPalindrome() {
+    ll n;
+    for(int i = 9; i >= 1; i--) {
+        for(int j = 9; j >= 0; j--) {
+            for(int k = 9; k >= 0; k--) {
+                n = i * 100001 + j * 10010 + k * 1100;
+                if(n < 998001 && satisfyRule(n))
+                    return n;
+            }
+        }
+    }
+    for(int i = 9; i >= 1; i--) {
+        for(int j = 9; j >= 0; j--) {
+            for(int k = 9; k >= 0; k--) {
+                n = i * 10001 + j * 1010 + k * 100;
+                if(satisfyRule(n))
+                    return n;
+            }
+        }
+    }
+    return 0; 
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
+
+    ll palindrome = getPalindrome();
+    cout << "Largest palindrome: " << palindrome << endl;
+
+    return 0;
+}
