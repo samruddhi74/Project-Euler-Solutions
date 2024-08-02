@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+typedef long long ll;
+
+ll solve() {
+    vector<bool> is_prime(200000, true); 
+    is_prime[0] = is_prime[1] = false; 
+    int cnt = 0;
+
+    for (ll i = 2; i < is_prime.size(); ++i) {
+        if (is_prime[i]) {
+            cnt++;
+            if (cnt == 10001) return i;
+            for (ll j = i * i; j < is_prime.size(); j += i) {
+                is_prime[j] = false;
+            }
+        }
+    }
+    return 0;
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    ll result = solve();
+    cout << result << endl;
+
+    return 0;
+}
