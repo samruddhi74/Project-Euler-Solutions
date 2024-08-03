@@ -1,0 +1,43 @@
+#include<iostream>
+#include<vector>
+#include<queue>
+#include<string>
+
+using namespace std;
+
+typedef long long ll;
+typedef vector<int> vi;
+typedef vector<ll> vl;
+typedef pair<int,int> pi;
+#define mod 1000000007
+#define all(v) (v).begin(),(v).end()
+
+#define endl '\n'
+#define F first
+#define S second
+#define pb push_back
+#define MP make_pair
+#define FOR(i,a,b) for (int i = a; i <= b; i++)
+
+void solve(){
+    ll a,b,c;
+    for(a = 1;a<1000;a++){
+        for(b=1;b<1000;b++){
+            c = 1000-a-b;
+            if(c>0 && a*a+b*b-c*c == 0)
+            {
+                cout<<a*b*c;
+                return ;
+            }
+        }
+    }
+}
+
+int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    
+    solve();
+    return 0;
+}
