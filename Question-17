@@ -1,0 +1,13 @@
+Pen-Paper solution :
+
+sum from 1 to 9 = 36 
+sum from 11 to 19 = 67 
+sum pf 20,30..,90 = 46
+
+so total sum upto 99 = 854 
+This sum repeated 10 times s = 8540 
+sum of "hundred and" phrase 99*9 times = 8910
+sum of "n hundred" = 36*100 + 7*9 
+last is 1000 = 11 
+
+Total sum = 8910 + 8540 + 63 + 3600 + 11 = 21124
