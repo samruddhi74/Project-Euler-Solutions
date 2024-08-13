@@ -1,0 +1,31 @@
+#include <iostream>
+#include<queue>
+using namespace std;
+
+int main() {
+queue<int> q;
+q.push(1);
+int carry =0;
+for(int i=2;i<100;i++){
+    int k = q.size();
+    while(k--){
+        int n = q.front();
+        q.pop();
+        int ans = n*i + carry;
+        q.push(ans%10);
+        carry = ans/10;
+    }
+    while(carry != 0)
+    {
+        q.push(carry%10);
+        carry /= 10;
+    }
+}
+int sum =0;
+while(!q.empty()){
+    sum += q.front();
+    q.pop();
+}
+cout<<sum;
+    return 0;
+}
