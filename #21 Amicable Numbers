@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+#include <set>
+
+using namespace std;
+
+typedef long long ll;
+
+void solve() {
+    const int N = 10000; // Adjust this value based on the problem statement
+    vector<int> sum_div(N + 1, 0);
+
+    // Calculate the sum of proper divisors for each number
+    for (int i = 1; i <= N; ++i) {
+        for (int j = 2 * i; j <= N; j += i) {
+            sum_div[j] += i;
+        }
+    }
+
+    set<int> amicable_numbers;
+    ll sum = 0;
+
+    // Identify amicable numbers
+    for (int i = 1; i <= N; ++i) {
+        int partner = sum_div[i];
+        if (partner != i && partner <= N && sum_div[partner] == i) {
+            // Add both numbers of the amicable pair to the result
+            if (amicable_numbers.find(i) == amicable_numbers.end()) {
+                sum += i;
+                amicable_numbers.insert(i);
+            }
+            if (amicable_numbers.find(partner) == amicable_numbers.end()) {
+                sum += partner;
+                amicable_numbers.insert(partner);
+            }
+        }
+    }
+
+    cout << sum << endl;
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
+
+    solve();
+
+    return 0;
+}
