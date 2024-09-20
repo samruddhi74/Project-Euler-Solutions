@@ -1,0 +1,31 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+int n = 28124;
+vector<int> divisors(n,0);
+for(int i=1;i<n;i++){
+    for(int j=i*2;j<n;j+=i)
+    divisors[j] += i;
+}
+set<int> num;
+for(int i=1;i<n;i++){
+    if(divisors[i] > i) num.insert(i);
+}
+vector<int> ans(n,1);
+for(auto i:num){
+    for(int j=i+1;j<n;j++){
+        if(ans[j])
+        {
+            if(divisors[j-i] > j-i) ans[j] =0;
+        }
+    }
+    
+}
+long long res=0;
+for(int i=0;i<n;i++){
+    if(ans[i]) res += i;
+}
+cout<<res;
+    return 0;
+}
