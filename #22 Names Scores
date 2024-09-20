@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int convertTonum(string s){
+int ans =0;
+for(char c:s)
+{
+    ans += int(c-'A')+1;
+}
+return ans;
+}
+
+int main() {
+    std::ifstream file("0022_names.txt");  // Open the file for reading
+    if (!file) {
+        std::cerr << "Failed to open the file!" << std::endl;
+        return 1;
+    }
+
+    std::stringstream buffer;
+    buffer << file.rdbuf();  // Read the entire file content into the buffer
+    std::string longString = buffer.str();  // Convert buffer into a string
+
+    // Separate the string by commas and store in a vector
+    std::vector<std::string> separatedStrings;
+    std::stringstream ss(longString);
+    std::string part;
+
+    while (std::getline(ss, part, ',')) {  // Split by comma
+        separatedStrings.push_back(part.substr(1,part.size()-2));  // Store each part in the vector
+    }
+    sort(separatedStrings.begin(),separatedStrings.end());
+    // Output the separated strings
+    std::cout << "Separated strings from the file:\n";
+    long long sum =0,i=1;
+    for (const auto& str : separatedStrings) {
+
+            int temp = convertTonum(str);
+            sum += temp*i;
+            i++;
+    }
+    std:: cout<<sum;
+    return 0;
+}
