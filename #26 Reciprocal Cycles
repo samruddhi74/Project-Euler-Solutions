@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int getCycleLength(int d) {
+    vector<int> remainder_pos(d, -1); // Track the position of each remainder
+    int temp = 1, pos = 0;            // Start with numerator 1, position 0
+    
+    while (temp != 0) {
+        temp %= d;
+        if (remainder_pos[temp] != -1) {
+            // Cycle detected, return length of the cycle
+            return pos - remainder_pos[temp];
+        }
+        // Mark the position of the current remainder
+        remainder_pos[temp] = pos;
+        temp *= 10;  // Move to the next decimal place
+        pos++;
+    }
+    return 0;  // No cycle (terminating decimal)
+}
+
+int main() {
+    int maxCycleLength = 0, numberWithMaxCycle = 0;
+
+    for (int d = 2; d < 1000; d++) {
+        int cycleLength = getCycleLength(d);
+        if (cycleLength > maxCycleLength) {
+            maxCycleLength = cycleLength;
+            numberWithMaxCycle = d;
+        }
+    }
+
+    cout << "The number with the longest recurring cycle is: " << numberWithMaxCycle << endl;
+    cout << "The length of the cycle is: " << maxCycleLength << endl;
+
+    return 0;
+}
